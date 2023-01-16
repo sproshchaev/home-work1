@@ -1,13 +1,13 @@
 package ru.topacademy;
 
 /**
- * Hello world!
+ * Home work 1
  *
  */
 public class App {
     public static void main(String[] args) {
 
-        System.out.println("Hello World!");
+        System.out.println("Home work 1");
 
     }
 }
