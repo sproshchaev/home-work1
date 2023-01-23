@@ -1,0 +1,352 @@
+Subject: [PATCH] HW2
+---
+Index: src/main/java/ru/topacademy/homework2/task5/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ru/topacademy/homework2/task5/Main.java b/src/main/java/ru/topacademy/homework2/task5/Main.java
+new file mode 100644
+--- /dev/null	(date 1674453126732)
++++ b/src/main/java/ru/topacademy/homework2/task5/Main.java	(date 1674453126732)
+@@ -0,0 +1,33 @@
++package ru.topacademy.homework2.task5;
++
++public class Main {
++
++    public static void main(String[] args) {
++        Book first = new Book("The Book", "Famous Writer", 199, "Big Book Publisher", 1984);
++        Book second = new Book("The Second Book", "Less F. Writer", 249, "The Book Publishers", 1999);
++
++        System.out.println("First book");
++        System.out.println(first + "\n");
++        System.out.println("Second book");
++        System.out.println(second + "\n");
++
++        System.out.println("Title of the first book: " + first.getTitle() + "\n");
++
++
++        Book firstCopy = new Book(first);
++        System.out.println("Copy of the first book:");
++        System.out.println(firstCopy + "\n");
++
++        System.out.println("Copy equals first book: " + firstCopy.equals(first));
++        System.out.println("Second book equals first book: " + second.equals(first));
++        System.out.println();
++
++        System.out.println("Change writer of the copy to :'Most F. Writer'");
++        firstCopy.setAuthor("Most F. Writer");
++        System.out.println(firstCopy + "\n");
++        System.out.println("Copy equals first book: " + firstCopy.equals(first));
++
++    }
++
++}
++
+Index: src/main/java/ru/topacademy/homework2/task6/Car.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ru/topacademy/homework2/task6/Car.java b/src/main/java/ru/topacademy/homework2/task6/Car.java
+new file mode 100644
+--- /dev/null	(date 1674453499605)
++++ b/src/main/java/ru/topacademy/homework2/task6/Car.java	(date 1674453499605)
+@@ -0,0 +1,46 @@
++package ru.topacademy.homework2.task6;
++
++public class Car {
++    private String Make;
++    private String Model;
++    private int RegistrationNum;
++
++    public Car(String Make, String Model, String RegN) {
++        Make = "";
++        Model = "";
++        RegN = "";
++    }
++
++    public String getMake() {
++        return Make;
++    }
++
++    public String getModel() {
++        return Model;
++    }
++
++    public boolean hire(String newHirer) {
++        return true;
++    }
++
++    public boolean returnFromHire() {
++        return false;
++    }
++
++    public int getRego() {
++        RegistrationNum++;
++        return RegistrationNum;
++    }
++
++    public boolean hireable() {
++            return true;
++    }
++
++    public String toString() {
++        return "Vehicle ID number: " + getRego() + "-" + "Make is: " + getMake() + "-" + "Model is: " + getModel();
++    }
++
++
++}
++
++
+Index: src/main/java/ru/topacademy/homework2/task2/MyProg.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ru/topacademy/homework2/task2/MyProg.java b/src/main/java/ru/topacademy/homework2/task2/MyProg.java
+new file mode 100644
+--- /dev/null	(date 1674453007320)
++++ b/src/main/java/ru/topacademy/homework2/task2/MyProg.java	(date 1674453007320)
+@@ -0,0 +1,34 @@
++package ru.topacademy.homework2.task2;
++
++import java.io.FileReader;
++import java.util.ArrayList;
++import java.util.Collections;
++import java.util.Scanner;
++
++public class MyProg {
++    public static void main(String[] args) throws Exception {
++        FileReader fr = new FileReader("input.txt");
++        Scanner scan = new Scanner(fr);
++
++        ArrayList<Person> persons = new ArrayList<>();
++        while (scan.hasNextLine())
++            persons.add(get_person(scan));
++        scan.close();
++        fr.close();
++
++        Collections.sort(persons);
++        for (Person p : persons)
++            System.out.println(p.homeCode() + " " + p.mobileCode());
++
++    }
++
++    private static Person get_person(Scanner scan) {
++        String s_name = scan.nextLine();    // фамилия
++        String i_name = scan.nextLine();    // имя
++        String m_name = scan.nextLine();    // отчество
++        String h_numb = scan.nextLine();    // домашний номер
++        String m_numb = scan.nextLine();    // мобильный номер
++        return new Person(s_name, i_name, m_name, h_numb, m_numb);
++    }
++
++}
+\ No newline at end of file
+Index: src/main/java/ru/topacademy/homework2/task2/Person.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ru/topacademy/homework2/task2/Person.java b/src/main/java/ru/topacademy/homework2/task2/Person.java
+new file mode 100644
+--- /dev/null	(date 1674453007307)
++++ b/src/main/java/ru/topacademy/homework2/task2/Person.java	(date 1674453007307)
+@@ -0,0 +1,63 @@
++package ru.topacademy.homework2.task2;
++
++import java.util.TreeMap;
++
++class Person implements Comparable<Person> {
++    private String name, surname, middlename, home, mobile;
++
++    Person() {
++    }
++
++    Person(String s_name, String i_name, String m_name, String h_num, String m_num) {
++        surname = s_name;
++        name = i_name;
++        middlename = m_name;
++        home = h_num;
++        mobile = m_num;
++    }
++
++    public String getF() {
++        return surname;
++    }
++
++    public String getI() {
++        return name;
++    }
++
++    public String getO() {
++        return middlename;
++    }
++
++    public String homeCode() {
++        TreeMap<String, String> map = new TreeMap<>();
++        map.put("845", "Саратов");
++        map.put("364", "Сургут");
++        map.put("473", "Воронеж");
++        map.put("495", "Москва");
++        map.put("862", "Сочи");
++        map.put("812", "Санкт-Петербург");
++        map.put("863", "Ростов на Дону");
++        return map.get(  home.substring(2, 5) );
++    }
++
++    public String mobileCode() {
++        TreeMap<String, String> map = new TreeMap<>();
++        map.put("903", "Билайн");
++        map.put("961", "Билайн");
++        map.put("909", "Билайн");
++        map.put("929", "Мегафон");
++        map.put("927", "Мегафон");
++        map.put("987", "МТС");
++        map.put("919", "МТС");
++        map.put("999", "Йота");
++        return map.get( mobile.substring(2, 5) );
++    }
++
++    @Override
++    public int compareTo(Person p) {
++        String a = surname + " " + name + " " + middlename;
++        String b = p.getF() + " " + p.getI() + " " + p.getO();
++        return a.compareToIgnoreCase(b);
++    }
++
++}
+Index: src/main/java/ru/topacademy/homework2/task1/People.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ru/topacademy/homework2/task1/People.java b/src/main/java/ru/topacademy/homework2/task1/People.java
+new file mode 100644
+--- /dev/null	(date 1674452808184)
++++ b/src/main/java/ru/topacademy/homework2/task1/People.java	(date 1674452808184)
+@@ -0,0 +1,12 @@
++package ru.topacademy.homework2.task1;
++
++public class People {
++    public static void main (String [] args ) {
++        Person oleg = new Person ();
++        oleg.name = " Sergej " ;
++        oleg.Age = 23;
++        oleg.sex = " men " ;
++        oleg.profession = " programmer " ;
++    }
++
++}
+Index: src/main/java/ru/topacademy/homework2/task1/Address.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ru/topacademy/homework2/task1/Address.java b/src/main/java/ru/topacademy/homework2/task1/Address.java
+new file mode 100644
+--- /dev/null	(date 1674452808201)
++++ b/src/main/java/ru/topacademy/homework2/task1/Address.java	(date 1674452808201)
+@@ -0,0 +1,10 @@
++package ru.topacademy.homework2.task1;
++
++public class Address {
++    public String city ;
++    String street ;
++    Address streetNumber ;
++    Address houseNumber ;
++    Address numberOfApartments ;
++
++}
+Index: src/main/java/ru/topacademy/homework2/task5/Book.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ru/topacademy/homework2/task5/Book.java b/src/main/java/ru/topacademy/homework2/task5/Book.java
+new file mode 100644
+--- /dev/null	(date 1674453101530)
++++ b/src/main/java/ru/topacademy/homework2/task5/Book.java	(date 1674453101530)
+@@ -0,0 +1,61 @@
++package ru.topacademy.homework2.task5;
++
++public class Book {
++
++    private String title;
++    private String author;
++    private int pages;
++    private String publisher;
++    private int year;
++
++    public Book(String title, String author, int pages, String publisher, int year) {
++        this.title = title;
++        this.author = author;
++        this.pages = pages;
++        this.publisher = publisher;
++        this.year = year;
++    }
++
++    public Book(Book book) {
++        this.title = book.title;
++        this.author = book.author;
++        this.pages = book.pages;
++        this.publisher = book.publisher;
++        this.year = book.year;
++    }
++
++    public String getTitle() {
++        return title;
++    }
++
++    public void setAuthor(String author) {
++        this.author = author;
++    }
++
++    @Override
++    public boolean equals(Object o) {
++        if (!(o instanceof Book)) {
++            return false;
++        }
++        Book other = (Book) o;
++
++        if (this.title.equals(other.title) &&
++                this.author.equals(other.author) &&
++                this.publisher.equals(other.publisher) &&
++                this.pages == other.pages && this.year == other.year) {
++            return true;
++        }
++        return false;
++    }
++
++    @Override
++    public String toString() {
++        return String.format("%-10s %s\n", "Title:", title) +
++                String.format("%-10s %s\n", "Author:", author) +
++                String.format("%-10s %d\n", "Pages:", pages) +
++                String.format("%-10s %s\n", "Publisher:", publisher) +
++                String.format("%-10s %d", "Year:", year);
++    }
++
++}
++
+Index: src/main/java/ru/topacademy/homework2/task1/Person.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ru/topacademy/homework2/task1/Person.java b/src/main/java/ru/topacademy/homework2/task1/Person.java
+new file mode 100644
+--- /dev/null	(date 1674452808170)
++++ b/src/main/java/ru/topacademy/homework2/task1/Person.java	(date 1674452808170)
+@@ -0,0 +1,10 @@
++package ru.topacademy.homework2.task1;
++
++public class Person {
++    String name ;
++    int Age ;
++
++    String profession ;
++    String sex ;
++
++}
