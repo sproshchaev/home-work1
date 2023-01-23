@@ -1,4 +1,4 @@
-package ru.top-academy;
+package ru.topacademy;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
